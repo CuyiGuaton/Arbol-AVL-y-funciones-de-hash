@@ -59,11 +59,9 @@ int main(int argc, char const *argv[]) {
   char *word;
   while(word=getWord(fp)){
       index = hash(word);
-      prepend(heads[0], word);
-      printf("%s\n",word );
+      heads[index] =prepend(heads[index], word);
   }
   fclose(fp);
-  mostrar(heads[0]);
 
   //muestra las listas
   for (size_t i = 0; i < MAX; i++) {
