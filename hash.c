@@ -6,7 +6,7 @@
 
 /*inicio definiciones y funciones que se usaran en la lista*/
 
-#define MAX 1
+#define MAX 1200
 #define MAXchar 30
 
 typedef struct node{
@@ -103,7 +103,7 @@ int main(int argc, char const *argv[]) {
   }
 
 	/* Pregunta 3*/
-	printf("3.- ¿Cuantas palabras distintas hay en el archivo? " );
+	printf("3.- ¿Cuantas palabras distintas hay en el archivo? ta malo, arreglar" );
 	int count = 0;
 	for (size_t i = 0; i < MAX; i++) {
 		count += contarDistintas(heads[i]);
