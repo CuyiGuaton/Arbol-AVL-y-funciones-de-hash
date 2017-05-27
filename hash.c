@@ -3,32 +3,30 @@
 #include <string.h>
 #include <time.h>
 
+/*inicio definiciones y funciones que se usaran en la lista*/
+
 #define MAX 200
+#define MAXchar 30
 
-struct node{
-	char word[50];
-	struct node * next;
-};
+typedef struct node{
+    char data[MAXchar];
+    struct node* next;
+} node;
 
-int chartoint(char algo[50]);
+#include "linkedlist-functions.c"
 
-int chartoint(char algo[50]){
+/*fin definiciones y funciones que se usaran en la lista*/
+
+int hash(char string[30]){
 	int aux=0;
-	int largo = strlen(algo);
+	int largo = strlen(string);
 	for(int i=0; i<largo; i++)
-		aux += algo[i] - '0';
-	return aux;
+		aux += string[i] - '0';
+	return aux%MAX;
 }
 
 int main(int argc, char const *argv[]) {
-	//int pico = chartoint("");
-	//printf("%i\n", pico%MAX);
-	int *array[MAX];
-	struct node word1;
-	struct node word2;
-
-	strcpy(word1.word , "pico");
-	word1 -> next =	malloc(sizeof(word2));
-
+	//int test = hash("klfdklfdsakñlfdsklñdfsklfsdkldsf");
+	//printf("%i\n", test);
 	return 0;
 }
