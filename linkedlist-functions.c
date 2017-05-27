@@ -1,10 +1,10 @@
-void buscarMayorFreq(node* head, int *mayorFreq, char mayor[MAXchar] ); //busca la palabra que más se repite en la lista
+void buscaMayorElemento(node* head, char candidate[MAXchar]);//Boyer–Moore majority vote algorithm
 node* create(char data[MAXchar], node* next); //crea un nodo nuevo
 node* prepend(node* head,char data[MAXchar]); // insterta un elemento al inicio de la lista
-void mostrarfreq(node* head); // muestra las palabras y sus frecuencias en la lista
 void mostrar(node* head); // muestra todos los elementos de la lista
-node* search(node* head,char data[MAXchar]); // busca un elemento en la lista
-int contar(node *head); //cuenta los elementos de la lista
+int search(node* head,char data[MAXchar]); // busca un elemento en la lista
+int contarElemento(node *head, char data[MAXchar]); // cuenta la cantidad de veces que un elemento está en la lista
+int contarDistintas(node* head); //cuenta los elementos distintos de una lista
 void dispose(node *head); // borra la lista
 
 //crea un nodo
@@ -27,29 +27,6 @@ node* prepend(node* head,char data[MAXchar]){
     return head;
 }
 
-//muestra los elementos en la lista y su frecuencia en estos
-void mostrarfreq(node* head){
-    node* cursor = head;
-    char aux[MAXchar];
-    int freq=1;
-    if(cursor != NULL){ // obtiene el primer elemento de la lsita y lo guarda en un auxiliar
-      strcpy(aux, cursor->data);
-      cursor = cursor->next;
-    }
-    while(cursor != NULL){ //recorre la lista
-        if(strcmp(cursor->data, aux) == 0) //si el elemento siguiente es igual que el anterior aumenta la frecuencia
-          freq++;
-        else{ //si el elemento siguiente es distinto entonces muestra el elemento y la frecuencia
-          printf("%s - %i\n", aux,freq);
-          strcpy(aux, cursor->data);
-          freq=1;
-        }
-    cursor = cursor->next;
-    }
-    printf("%s - %i\n", aux,freq);
-
-}
-
 //muestra los elementos de la lista dinamica
 void mostrar(node* head){
     node* cursor = head;
@@ -59,55 +36,62 @@ void mostrar(node* head){
     }
 }
 
-//muestra los elementos de la lista dinamica
-void buscarMayorFreq(node* head, int *mayorFreq, char mayor[MAXchar]){
+//Boyer–Moore majority vote algorithm
+void buscaMayorElemento(node* head, char candidate[MAXchar]){
   node* cursor = head;
-  char aux[MAXchar];
-  int freq=1;
-  if(cursor != NULL){ // obtiene el primer elemento de la lsita y lo guarda en un auxiliar
-    strcpy(aux, cursor->data);
+  int count = 0;
+  while(cursor != NULL){
+    if(count == 0)
+      strcpy(candidate, cursor->data);
+    if (strcmp(candidate, cursor->data) == 0)
+        count++;
+    else
+        count--;
     cursor = cursor->next;
-  }
-  while(cursor != NULL){ //recorre la lista
-      if(strcmp(cursor->data, aux) == 0) //si el elemento siguiente es igual que el anterior aumenta la frecuencia
-        freq++;
-      else{ //si el elemento siguiente es distinto entonces muestra el elemento y la frecuencia
-        if (freq > (*mayorFreq)){
-            (*mayorFreq) = freq;
-            strcpy(mayor, cursor->data);
-        }
-        strcpy(aux, cursor->data);
-        freq=1;
-      }
-  cursor = cursor->next;
-  }
-  if (freq > (*mayorFreq)){
-      (*mayorFreq) = freq;
-      strcpy(mayor, aux);
-  }
-
+    }
 }
 
 //busca un elemento en el nodo
-node* search(node* head,char data[MAXchar]){
+int search(node* head,char data[MAXchar]){
     node *cursor = head;
     while(cursor!=NULL){
         if(strcmp(  cursor->data, data) ==0)
-            return cursor;
+            return 1;
         cursor = cursor->next;
     }
-    return NULL;
+    return 0;
 }
 
-// cuenta los elementos de la lista
-int contar(node *head){
+// cuenta la cantidad de veces que se repite un elemento en la lista
+int contarElemento(node *head, char data[MAXchar]){
     node *cursor = head;
     int c = 0;
     while(cursor != NULL){
-        c++;
+        if( strcmp(  cursor->data, data) ==0 )
+          c++;
         cursor = cursor->next;
     }
     return c;
+}
+
+//cuenta los elementos distintos de una lista
+int contarDistintas(node* head){
+  node* cursor = head;
+  char aux[MAXchar];
+  int count = 0;
+  if(cursor != NULL){ // obtiene el primer elemento de la lsita y lo guarda en un auxiliar
+    strcpy(aux, cursor->data);
+    cursor = cursor->next;
+    count++;
+  }
+  while(cursor != NULL){ //recorre la lista
+      if(strcmp(cursor->data, aux) != 0){ //si el elemento siguiente es igual que el anterior aumenta la frecuencia
+        strcpy(aux, cursor->data);
+        count++;
+      }
+  cursor = cursor->next;
+  }
+  return count;
 }
 
 //borra la listga

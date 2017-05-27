@@ -6,7 +6,7 @@
 
 /*inicio definiciones y funciones que se usaran en la lista*/
 
-#define MAX 200
+#define MAX 1000
 #define MAXchar 30
 
 typedef struct node{
@@ -57,18 +57,73 @@ int main(int argc, char const *argv[]) {
   FILE *fp;
   fp = fopen("archivo_4.tex", "r");
   char *word;
-  while(word=getWord(fp)){
-      index = hash(word);
-      heads[index] =prepend(heads[index], word);
+  while(word=getWord(fp)){ //se obtiene palabra por palabra del archivo
+      index = hash(word); // se encuentra su indice hash a la palabra
+      heads[index] =prepend(heads[index], word); //se guarda en la lista que corresponde según su valor hash
   }
   fclose(fp);
 
   //muestra las listas
+
   for (size_t i = 0; i < MAX; i++) {
     if(heads[i]!=NULL){
+      printf("%i - ",i );
       mostrar(heads[i]);
       printf("\n" );
     }
   }
+
+
+	/* Pregunta 1*/
+  printf("1.- ¿Se encuentra la palabra readiness? \n" );
+  int flag = 0;
+  for (size_t i = 0; i < MAX; i++) {
+    flag = search(heads[i], "readiness");
+    if(flag == 1){
+      printf("Resp: Sí\n");
+      break;
+    }
+  }
+  if (flag == 0) {
+    printf("Resp: No\n");
+  }
+
+	/* Pregunta 2*/
+  printf("2.- ¿Se encuentra la palabra fearless? \n" );
+  flag = 0;
+  for (size_t i = 0; i < MAX; i++) {
+    flag = search(heads[i], "fearless");
+    if(flag == 1){
+      printf("Resp: Sí\n");
+      break;
+    }
+  }
+  if (flag == 0) {
+    printf("Resp: No\n");
+  }
+
+	/* Pregunta 3*/
+	printf("3.- ¿Cuantas palabras distintas hay en el archivo? " );
+	int count = 0;
+	for (size_t i = 0; i < MAX; i++) {
+		count += contarDistintas(heads[i]);
+	}
+	printf("\nResp: Hay %i palabras distintas en el archivo\n", count );
+
+	/* Pregunta 4*/
+	printf("4.- ¿Cual es la palabra mas utilizada?\n" );
+  char aux[MAXchar];
+  char mayor[MAXchar];
+  int auxFreq = 0;
+  int mayorFreq = 0;
+  for (size_t i = 0; i < MAX; i++) {
+    buscaMayorElemento(heads[i], aux);
+    auxFreq = contarElemento(heads[i], aux);
+    if(auxFreq > mayorFreq){
+      strcpy(mayor,aux);
+      mayorFreq = auxFreq;
+    }
+  }
+  printf("Resp: Es la palabra \"%s\" que se repite %i veces\n", mayor,mayorFreq);
 	return 0;
 }
