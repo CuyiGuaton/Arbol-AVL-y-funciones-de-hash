@@ -6,7 +6,7 @@
 
 /*inicio definiciones y funciones que se usaran en la lista*/
 
-#define MAX 1000
+#define MAX 1
 #define MAXchar 30
 
 typedef struct node{
@@ -125,5 +125,10 @@ int main(int argc, char const *argv[]) {
     }
   }
   printf("Resp: Es la palabra \"%s\" que se repite %i veces\n", mayor,mayorFreq);
+
+  //se borran las listas
+  for (size_t i = 0; i < MAX; i++) {
+    dispose(heads[i]);
+  }
 	return 0;
 }
