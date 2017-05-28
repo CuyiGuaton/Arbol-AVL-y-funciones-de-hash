@@ -156,8 +156,8 @@ void dispose(node *head){
         }
     }
 }
-
-//muestra los elementos de la lista dinamica
+/*
+//muestra los elementos de la lista dinamica ordenada
 int contarDistintas(node* head){
   node* cursor = head;
   char aux[MAXchar];
@@ -176,6 +176,31 @@ int contarDistintas(node* head){
   }
   return count;
 }
+*/
+
+int contarDistintas(node* head){
+  node* i = head;
+  node* j;
+  char aux[MAXchar];
+  int count = 0;
+  int flag;
+  while(i != NULL){ //recorre la lista
+      flag = 0;
+      j = i->next; // compara un elemento con todos los que le sigue
+      while (j != NULL){
+        if(strcmp( i->data, j->data ) == 0){ //si son iguales flag es 1 y no lo cuenta porque es repetido
+          flag = 1;
+          break;
+        }
+        j = j->next;
+      }
+      if( flag == 0 ) // si no se repetio nunca entonces se cuenta
+        count++;
+      i = i->next;
+  }
+  return count;
+}
+
 
 int main(){
     node* head = NULL;
@@ -184,6 +209,8 @@ int main(){
     head = prepend(head, "hola");
     head = prepend(head, "hola");
     head = prepend(head, "chao");
+    head = prepend(head, "chao");
+    head = prepend(head, "chao0");
     printf("Mostrando nodos:\n" );
     mostrar(head);
     printf("\nMostrar el nodo que más se repite\n" );

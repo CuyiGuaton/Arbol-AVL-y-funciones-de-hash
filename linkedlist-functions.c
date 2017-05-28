@@ -76,20 +76,24 @@ int contarElemento(node *head, char data[MAXchar]){
 
 //cuenta los elementos distintos de una lista
 int contarDistintas(node* head){
-  node* cursor = head;
+  node* i = head;
+  node* j;
   char aux[MAXchar];
   int count = 0;
-  if(cursor != NULL){ // obtiene el primer elemento de la lsita y lo guarda en un auxiliar
-    strcpy(aux, cursor->data);
-    cursor = cursor->next;
-    count++;
-  }
-  while(cursor != NULL){ //recorre la lista
-      if(strcmp(cursor->data, aux) != 0){ //si el elemento siguiente es igual que el anterior aumenta la frecuencia
-        strcpy(aux, cursor->data);
-        count++;
+  int flag;
+  while(i != NULL){ //recorre la lista
+      flag = 0;
+      j = i->next; // compara un elemento con todos los que le sigue
+      while (j != NULL){
+        if(strcmp( i->data, j->data ) == 0){ //si son iguales flag es 1 y no lo cuenta porque es repetido
+          flag = 1;
+          break;
+        }
+        j = j->next;
       }
-  cursor = cursor->next;
+      if( flag == 0 ) // si no se repetio nunca entonces se cuenta
+        count++;
+      i = i->next;
   }
   return count;
 }
