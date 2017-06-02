@@ -23,8 +23,9 @@ int hash(char string[30]);
 
 int hash(char string[30]){
 	int aux=0;
+  int i;
 	int largo = strlen(string);
-	for(int i=0; i<largo; i++)
+	for(i=0; i<largo; i++)
 		aux += string[i] - '0';
 	return aux%MAX;
 }
@@ -46,12 +47,13 @@ char *getWord(FILE *fp){
 
 int main(int argc, char const *argv[]) {
 	int index;
+  int i;
   clock_t start_t, end_t, total_t;
   start_t = clock();
 
   //crea las cabeceras de las listas y la hace null
 	node* heads[MAX];
-	for (size_t i = 0; i < MAX; i++) {
+	for (i = 0; i < MAX; i++) {
 		heads[i] = NULL;
 	}
 
@@ -67,7 +69,7 @@ int main(int argc, char const *argv[]) {
 
   //muestra las listas
   /*
-  for (size_t i = 0; i < MAX; i++) {
+  for (  i = 0; i < MAX; i++) {
     if(heads[i]!=NULL){
       printf("%i - ",i );
       mostrar(heads[i]);
@@ -78,12 +80,12 @@ int main(int argc, char const *argv[]) {
 
   end_t = clock();
   printf("\n Tiempo en generar las listas: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
-
   start_t = clock();
+
 	/* Pregunta 1*/
   printf("\n1.- ¿Se encuentra la palabra readiness? \n" );
   int flag = 0;
-  for (size_t i = 0; i < MAX; i++) {
+  for (  i = 0; i < MAX; i++) {
     flag = search(heads[i], "readiness");
     if(flag == 1){
       printf("Resp: Sí\n");
@@ -100,7 +102,7 @@ int main(int argc, char const *argv[]) {
 	/* Pregunta 2*/
   printf("\n2.- ¿Se encuentra la palabra fearless? \n" );
   flag = 0;
-  for (size_t i = 0; i < MAX; i++) {
+  for (  i = 0; i < MAX; i++) {
     flag = search(heads[i], "fearless");
     if(flag == 1){
       printf("Resp: Sí\n");
@@ -117,7 +119,7 @@ int main(int argc, char const *argv[]) {
 	/* Pregunta 3*/
 	printf("\n3.- ¿Cuantas palabras distintas hay en el archivo?\n" );
 	int count = 0;
-	for (size_t i = 0; i < MAX; i++) {
+	for (  i = 0; i < MAX; i++) {
 		count += contarDistintas(heads[i]);
 	}
 	printf("\nResp: Hay %i palabras distintas en el archivo\n", count );
@@ -131,7 +133,7 @@ int main(int argc, char const *argv[]) {
   char mayor[MAXchar];
   int auxFreq = 0;
   int mayorFreq = 0;
-  for (size_t i = 0; i < MAX; i++) {
+  for (  i = 0; i < MAX; i++) {
     buscaMayorElemento(heads[i], aux);
     auxFreq = contarElemento(heads[i], aux);
     if(auxFreq > mayorFreq){
@@ -144,7 +146,7 @@ int main(int argc, char const *argv[]) {
   printf("\n Tiempo en responder: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
 
   //se borran las listas
-  for (size_t i = 0; i < MAX; i++) {
+  for (  i = 0; i < MAX; i++) {
     dispose(heads[i]);
   }
 	return 0;
