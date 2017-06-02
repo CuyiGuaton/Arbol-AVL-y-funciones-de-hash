@@ -105,9 +105,9 @@ int searchWord(char **words, char string[MAXchar], int size) {
 //Search word in the array
 int countDistinct(char **words, int size) {
   size_t i;
-  int freq = 0;
-  for (i = 0; i < size-1; i++)
-    if(strcmp(words[i],words[i+1]) != 0)
+  int freq = 1;
+  for (i = 1; i < size; i++)
+    if(strcmp(words[i],words[i-1]) != 0)
       freq++;
   return freq;
 }
@@ -155,14 +155,13 @@ int main(){
     printf("Resp: No\n");
   end_t = clock();
   printf("\n Tiempo en responder: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
-
   start_t = clock();
+
 	/* Pregunta 3*/
 	printf("\n3.- ¿Cuantas palabras distintas hay en el archivo?" );
 	printf("\nResp: Hay %i palabras distintas en el archivo\n", countDistinct(words,LenArray));
   end_t = clock();
   printf("\nTiempo en responder: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
-
   start_t = clock();
 
 
