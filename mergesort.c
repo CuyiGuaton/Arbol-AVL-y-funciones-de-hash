@@ -112,6 +112,25 @@ int countDistinct(char **words, int size) {
   return freq;
 }
 
+//Most used word
+int mostUsedWord(char **words, int size,char *higher) {
+  size_t i;
+  int freq = 1;
+  int max =0;
+  for (i = 1; i < size; i++)
+    if(strcmp(words[i],words[i-1]) == 0)
+      freq++;
+    else{
+      if(freq > max){
+        max = freq;
+        strcpy(higher, words[i-1]);
+      }
+      freq=1;
+    }
+  return max;
+}
+
+
 /* Driver program to test above functions */
 int main(){
   clock_t start_t, end_t, total_t;
@@ -166,9 +185,12 @@ int main(){
 
 
 	/* Pregunta 4*/
-	printf("\n4.- ¿Cual es la palabra más utilizada?\n" );
-
-  printf("Resp: Es la palabra  que se repite veces\n");
+	printf("\n4.- ¿Cual es la palabra más utilizada?\n");
+  char aux[MAXchar];
+  char higher[MAXchar];
+  int maxFreq = 0;
+  maxFreq = mostUsedWord(words,LenArray,higher);
+  printf("Resp: Es la palabra \"%s\" que se repite %i veces\n", higher, maxFreq );
   end_t = clock();
   printf("\n Tiempo en responder: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
 
