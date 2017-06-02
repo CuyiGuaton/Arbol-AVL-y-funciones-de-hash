@@ -96,9 +96,11 @@ char *getWord(FILE *fp){
 //Search word in the array
 int searchWord(char **words, char string[MAXchar], int size) {
   size_t i;
-  for (i = 0; i < size; i++)
-    if(strcmp(words[i], string) == 0);
+  for (i = 0; i < size; i++){
+    if(strcmp(words[i], string) == 0){
       return 1;
+    }
+  }
   return 0;
 }
 
@@ -154,6 +156,8 @@ int main(){
 
   printf("\nSorted array is \n");
   printArray(words, LenArray);
+
+
   start_t = clock();
 	/* Pregunta 1*/
   printf("\n1.- ¿Se encuentra la palabra readiness? \n" );
