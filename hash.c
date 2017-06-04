@@ -83,34 +83,22 @@ int main(int argc, char const *argv[]) {
 
 	/* Pregunta 1*/
   printf("\n1.- ¿Se encuentra la palabra readiness? \n" );
-  int flag = 0;
-  for (  i = 0; i < MAX; i++) {
-    flag = search(heads[i], "readiness");
-    if(flag == 1){
+  index = hash("readiness");
+  if(search(heads[index], "readiness") == 1)
       printf("Resp: Sí\n");
-      break;
-    }
-  }
-  if (flag == 0) {
+  else
     printf("\nResp: No\n");
-  }
   end_t = clock();
   printf("\n Tiempo en responder: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
 
   start_t = clock();
 	/* Pregunta 2*/
   printf("\n2.- ¿Se encuentra la palabra fearless? \n" );
-  flag = 0;
-  for (  i = 0; i < MAX; i++) {
-    flag = search(heads[i], "fearless");
-    if(flag == 1){
+  index = hash("fearless");
+  if(search(heads[index], "fearless") == 1)
       printf("Resp: Sí\n");
-      break;
-    }
-  }
-  if (flag == 0) {
-    printf("Resp: No\n");
-  }
+  else
+    printf("\nResp: No\n");
   end_t = clock();
   printf("\n Tiempo en responder: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
 

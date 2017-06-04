@@ -160,18 +160,31 @@ Para propósitos de la medición de tiempo se decidió que el largo del arreglo 
 
 \subsection{Generar la estructura}
 
+Al momento de generar la estructura se considera también el tiempo en leer el archivo, esto es debido a que la función que leer el archivo devuelve cada palabra que hay en el archivo en minúsculas y sin signos y está se ingresa en la estructura de inmediato.
+
+El algoritmo que genero la estructura más rápido fue la tabla de hash.
+
 \subsubsection{Mergesort}
 
 \paragraph{Tiempo:} 0.084478 segundos
 
+El tiempo total ocupado en el mergesort para ordenar un arreglo ya generado fue de 0.070521 segundos, haciendo del mergesort el peor algoritmo en lo que se refiere al tiempo de generar la estructura.
+
+En lo que se refiere a la memoria mergesort va a ocupar tantos espacios de memoria como palabras haya en el archivo, además cada palabra va a usar 30 bloques de memoria por defecto, aunque se puede solucionar gastando más tiempo en proceso agregando un contador a cada palabra y que cuando se agregue la palabra arreglo se aumente el contador si es que está ya esta repetida, pero eso costaría mucho en implementación en este caso debido a que se está usando arreglos multidimencionales de largo fijo.
 
 \subsubsection{Árbol AVL}
 
 \paragraph{Tiempo:} 0.028204 segundos
 
+La generación del árbol gasta más tiempo que en las tablas de hash debido a las comparaciones que se hacer a cada nodo y al balanceo que debe hacer cada vez que se inserta una palabra, aunque en lo que se refiere a memoria árbol AVL gana y por mucho debido a que la cantidad de nodos que usa es igual a la cantidad de palabras distintas que haya en el archivo y no a la cantidad total de palabras que tenga.
+
 \subsubsection{Tabla Hash}
 
 \paragraph{Tiempo:} 0.019277 segundos
+
+La generación de la tabla hash es la más rápida debido a que no se hace ninguna comparación durante del proceso, una vez que se obtiene una palabra del archivo, a esta se la aplica una función de hash y está corresponde al indice que en que va esa palabra en el arreglo y la agrega a la lista asociada a ese indice, cuando hay colisión no hay gasto extra de tiempo debido a que la palabra se inserta siempre al inicio de la lista.
+
+En lo que se refiere a la memoria está va a ser igual a la cantidad de palabras que tenga el archivo.
 
 \subsection{Encontrar una palabra}
 
@@ -181,12 +194,15 @@ Para propósitos de la medición de tiempo se decidió que el largo del arreglo 
 
 \paragraph{Tiempo si la no palabra está:} 0.001291 segundos
 
+La búsqueda en buscar una palabra en arreglo ordenado es lineal, debido a que se va a comparar cada palabra del arreglo desde el inicio hasta el final con la palabra que se desea encontrar. No se gasta memoria extra en el proceso.
 
 \subsubsection{Árbol AVL}
 
 \paragraph{Tiempo si la palabra está:} 0.000004 segundos
 
 \paragraph{Tiempo si la no palabra está:} 0.000003 segundos
+
+La búsqueda de una palabra en árbol es la más rápida ya que es de complejidad logarítmica, solo se va comparando los nodos desde la raíz y dependiendo si es mayor o menor pasa a la rama que le corresponde. No hay mayor gasto de memoria en la búsqueda.
 
 \subsubsection{Tabla Hash}
 
@@ -201,14 +217,19 @@ Para propósitos de la medición de tiempo se decidió que el largo del arreglo 
 
 \paragraph{Tiempo:} 0.084478 segundos
 
+Para contar la cantidad de palabras distintas se compara cada palabra del arreglo con la que sigue y cuando son distintas se aumenta el contador a uno, como el arreglo está ordenado todas las palabras iguales están juntas y no dispersas a lo largo del arreglo. El arreglo se recorre 1 vez y se hacen n comparaciones por lo que la complejidad es lineal.
+
 
 \subsubsection{Árbol AVL}
 
 \paragraph{Tiempo:} 0.000369 segundos
 
+
+
 \subsubsection{Tabla Hash}
 
 \paragraph{Tiempo:} 0.005666 segundos
+
 
 
 \subsection{Encontrar la palabra más utilizada}
