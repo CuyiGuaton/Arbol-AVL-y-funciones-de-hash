@@ -250,7 +250,6 @@ main(){
     root = insert(root, word);
   }
   fclose(fp);
-  printf("pic\n" );
   //balance_tree(root);
   printf("Preorder\n");
   preorder(root);

@@ -6,6 +6,70 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.1}Arreglo ordenado con Mergesort}{2}{subsection.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2}\IeC {\'A}rbol AVL}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.2}\IeC {\'A}rbol AVL}{3}{subsection.2.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.3}Tabla Hash}{3}{subsection.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Soluciones a cada problema y tiempos}{4}{section.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1}Generar la estructura}{4}{subsection.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.1}Mergesort}{4}{subsubsection.3.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo:}{4}{section*.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2}\IeC {\'A}rbol AVL}{4}{subsubsection.3.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo:}{4}{section*.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.3}Tabla Hash}{4}{subsubsection.3.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo:}{4}{section*.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2}Encontrar una palabra}{4}{subsection.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.2.1}Mergesort}{4}{subsubsection.3.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo si la palabra est\IeC {\'a}:}{4}{section*.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo si la no palabra est\IeC {\'a}:}{4}{section*.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.2.2}\IeC {\'A}rbol AVL}{4}{subsubsection.3.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo si la palabra est\IeC {\'a}:}{4}{section*.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo si la no palabra est\IeC {\'a}:}{4}{section*.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.2.3}Tabla Hash}{4}{subsubsection.3.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo si la palabra est\IeC {\'a}:}{4}{section*.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo si la no palabra est\IeC {\'a}:}{4}{section*.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3}Contar la cantidad de palabras distintas}{4}{subsection.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1}Mergesort}{4}{subsubsection.3.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo:}{4}{section*.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2}\IeC {\'A}rbol AVL}{5}{subsubsection.3.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo:}{5}{section*.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.3}Tabla Hash}{5}{subsubsection.3.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo:}{5}{section*.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4}Encontrar la palabra m\IeC {\'a}s utilizada}{5}{subsection.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.1}Mergesort}{5}{subsubsection.3.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo:}{5}{section*.14}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2}\IeC {\'A}rbol AVL}{5}{subsubsection.3.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo:}{5}{section*.15}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.3}Tabla Hash}{5}{subsubsection.3.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\nonumberline Tiempo:}{6}{section*.16}

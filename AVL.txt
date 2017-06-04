@@ -1,4 +1,3 @@
-pic
 Preorder
 not - 219
 found - 5
@@ -3222,12 +3221,12 @@ zeal - 1
 
  Tiempo en general el árbol: 0.028204 segundos
 
-1.- ¿Se encuentra la palabra readiness? 
+1.- ¿Se encuentra la palabra readiness?
 Resp: Sí
 
  Tiempo en responder: 0.000004 segundos
 
-2.- ¿Se encuentra la palabra fearless? 
+2.- ¿Se encuentra la palabra fearless?
 Resp: No
 
  Tiempo en responder: 0.000003 segundos
