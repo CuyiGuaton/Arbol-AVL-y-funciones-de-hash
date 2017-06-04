@@ -6,7 +6,7 @@
 
 /*inicio definiciones y funciones que se usaran en la lista*/
 
-#define MAX 500
+#define MAX 800 // len of the array of pinters
 #define MAXchar 30
 
 typedef struct node{
@@ -20,15 +20,29 @@ typedef struct node{
 
 char *getword(FILE *fp);
 int hash(char string[30]);
-
+/*
 int hash(char string[30]){
-	int aux=0;
+	int hash=5381;
   int i;
 	int largo = strlen(string);
 	for(i=0; i<largo; i++)
-		aux += string[i] - '0';
-	return aux%MAX;
+		//aux += string[i] - '0';
+    hash = ((hash << 5) + hash) + string[i];
+	return hash;
 }
+*/
+
+
+int hash(char string[30]){
+	int hash=0;
+  int i;
+	int largo = strlen(string);
+	for(i=0; i<largo; i++)
+		hash += string[i] - '0';
+
+	return hash%MAX;
+}
+
 
 //obtiene cada palabra del archivo
 char *getWord(FILE *fp){
@@ -66,13 +80,12 @@ int main(int argc, char const *argv[]) {
       heads[index] =prepend(heads[index], word); //se guarda en la lista que corresponde según su valor hash
   }
   fclose(fp);
-
   //muestra las listas
   printf("Number hash list - words\n");
-  for (  i = 0; i < MAX; i++) {
-    if(heads[i]!=NULL){
-      printf("%i - ",i );
-      mostrar(heads[i]);
+  for (i = 0; i < MAX; i++) {
+    if(heads[i] != NULL){
+      printf("%i ", i);
+     mostrar(heads[i]);
       printf("\n" );
     }
   }
@@ -144,9 +157,11 @@ int main(int argc, char const *argv[]) {
   end_t = clock();
   printf("\n Tiempo en responder: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
 
+
   //se borran las listas
   for (  i = 0; i < MAX; i++) {
     dispose(heads[i]);
   }
+
 	return 0;
 }

@@ -6,6 +6,7 @@ int search(node* head,char data[MAXchar]); // busca un elemento en la lista
 int contarElemento(node *head, char data[MAXchar]); // cuenta la cantidad de veces que un elemento está en la lista
 int contarDistintas(node* head); //cuenta los elementos distintos de una lista
 void dispose(node *head); // borra la lista
+int countAll(node *head); // Cuenta los elementos de una lista
 
 //crea un nodo
 node* create(char data[MAXchar], node* next){
@@ -74,30 +75,40 @@ int contarElemento(node *head, char data[MAXchar]){
     return c;
 }
 
+//Cuenta todos los elementos de una lista
+
+
+int countAll(node *head)
+{
+    node *cursor = head;
+    int c = 0;
+    while(cursor != NULL){
+        c++;
+        cursor = cursor->next;
+    }
+    return c;
+}
 //cuenta los elementos distintos de una lista
 int contarDistintas(node* head){
   node* i = head;
-  node* j;
-  char aux[MAXchar];
-  int count = 0;
-  int flag;
-  while(i != NULL){ //recorre la lista
-      flag = 0;
-      j = i->next; // compara un elemento con todos los que le sigue
-      while (j != NULL){
-        if(strcmp( i->data, j->data ) == 0){ //si son iguales flag es 1 y no lo cuenta porque es repetido
-          flag = 1;
-          break;
-        }
-        j = j->next;
-      }
-      if( flag == 0 ) // si no se repetio nunca entonces se cuenta
-        count++;
-      i = i->next;
+  node* unique = NULL; // crea una lista auxiliar donde guardar los elementos unicos
+  int count =0;
+  if (i != NULL) {
+    unique = prepend(unique,i->data);
+    i = i->next;
+    count++;
   }
-  return count;
+  while(i != NULL){ //recorre la lista
+    if(search(unique,i->data) == 0){ //sino se encuentra i->data en la lista unique
+      unique = prepend(unique,i->data);
+      count++;
+    }
+    i=i->next;
+  }
+//  mostrar(unique);
+  //printf("\n" );
+  return(count);
 }
-
 //borra la listga
 void dispose(node *head){
     node *cursor, *tmp;
