@@ -150,9 +150,11 @@ Puntero Derecho\\
 
 Para implementar el algoritmo con funciones de hash se utilizar un arreglo de largo fijo para almacenar las cabeceras de las listas enlazadas que contienen las palabras que se desean almacenar, este arreglo en un principio solo almacena elementos nulos, cuando se quiere ingresar una palabra se pasa esta palabra por una función hash y luego el resultado es utilizado como incide y se agrega a la lista que corresponde a ese indice, cada elemento es ingresado al inicio de la lista.
 
-La función hash que utiliza el algoritmo es el algoritmo djb2 \footnote{\url{http://www.cse.yorku.ca/~oz/hash.html}}, debido a que este permite mantener una buena distribución entre el largo del arreglo, logrando que en la mayoría de las veces las únicas colisiones que haya son de las palabras que son iguales.
+La función hash que utiliza el algoritmo es simplemente sumar cada letra del string y calcular su mod MAX, donde MAX, es un número que puede ser modificado por el usuario, MAX también es el largo del arreglo de punteros.
 
-La tabla hash siempre va a guardar todas las palabras que tenga el archivo, pero se puede hacer un intercambio de tiempo memoria en el largo del arreglo de punteros, entre más largo sea más memoria utilizara pero habrán menos colisiones lo que se traduce en menos tiempo en operaciones de busqueda (la búsqueda llega a ser de costo 1 en este caso si no hay colisión) y conteo, entre más corto menos memoria utilizara pero se gasta más tiempo en hacer las operaciones de búsqueda y conteo dentro de las listas enlazadas. Para propósitos de la medición de tiempo se decidió que el largo del arreglo de punteros sea de largo 4000, esto tomando en cuenta que la cantidad de palabras únicas en el archivo es de 3219, aunque se puede modificar sin problemas cambiando el valor de MAX en el define.
+La tabla hash siempre va a guardar todas las palabras que tenga el archivo, pero se puede hacer un intercambio de tiempo memoria en el largo del arreglo de punteros, entre más largo sea más memoria utilizara pero habrán menos colisiones lo que se traduce en menos tiempo en operaciones de búsqueda (la búsqueda llega a ser de costo 1 en este caso si no hay colisión) y conteo, entre más corto menos memoria utilizara pero se gasta más tiempo en hacer las operaciones de búsqueda y conteo dentro de las listas enlazadas.
+
+Para propósitos de la medición de tiempo se decidió que el largo del arreglo de punteros sea de largo 800 debido a que más allá de 800 no hay crecimiento en los indices únicos que se pueden obtener por lo que es un desperdicio de memoria.
 
 
 

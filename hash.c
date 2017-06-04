@@ -6,7 +6,7 @@
 
 /*inicio definiciones y funciones que se usaran en la lista*/
 
-#define MAX 800 // len of the array of pinters
+#define MAX 1000 // len of the array of pinters
 #define MAXchar 30
 
 typedef struct node{
@@ -19,19 +19,6 @@ typedef struct node{
 /*fin definiciones y funciones que se usaran en la lista*/
 
 char *getword(FILE *fp);
-int hash(char string[30]);
-/*
-int hash(char string[30]){
-	int hash=5381;
-  int i;
-	int largo = strlen(string);
-	for(i=0; i<largo; i++)
-		//aux += string[i] - '0';
-    hash = ((hash << 5) + hash) + string[i];
-	return hash;
-}
-*/
-
 
 int hash(char string[30]){
 	int hash=0;
