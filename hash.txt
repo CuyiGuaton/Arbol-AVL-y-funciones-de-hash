@@ -552,25 +552,26 @@ Number hash list - words
 838 determinations 
 917 notwithstanding notwithstanding notwithstanding 
 
- Tiempo en generar las listas: 0.021283 segundos
+ Tiempo en generar las listas: 0.024193 segundos
 
 1.- ¿Se encuentra la palabra readiness? 
 Resp: Sí
 
- Tiempo en responder: 0.003407 segundos
+ Tiempo en responder: 0.000009 segundos
 
 2.- ¿Se encuentra la palabra fearless? 
+
 Resp: No
 
- Tiempo en responder: 0.003529 segundos
+ Tiempo en responder: 0.000003 segundos
 
 3.- ¿Cuantas palabras distintas hay en el archivo?
 
 Resp: Hay 3219 palabras distintas en el archivo
 
-Tiempo en responder: 0.005493 segundos
+Tiempo en responder: 0.005548 segundos
 
 4.- ¿Cual es la palabra más utilizada?
 Resp: Es la palabra "the" que se repite 817 veces
 
- Tiempo en responder: 0.003960 segundos
+ Tiempo en responder: 0.003946 segundos
