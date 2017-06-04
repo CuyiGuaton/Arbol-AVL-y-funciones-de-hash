@@ -178,17 +178,57 @@ void preorder(struct node* root){
   preorder(root->left);
   preorder(root->right);
 }
-/*
-//function for printing the in-order of tree
-void inorder(struct node* root){
+
+//function for printing the pre-order of tree
+void searchByFreq(struct node* root,int freq){
   if(!root)
     return;
-  inorder(root->left);
-  printf("%d\t",root->data);
-  inorder(root->right);
+  if(root->freq == freq)
+    printf("%s",root->data);
+  searchByFreq(root->left, freq);
+  searchByFreq(root->right, freq);
 }
-*/
 
+//function for search a word in the tree
+int searchWord(struct node* root, char word[MAXchar]){
+  if(root == NULL)
+    return;
+  if (strcmp(root->data, word) == 0)
+    return 1;
+  if(strcmp(root->data, word) > 0)
+    return searchWord(root->left, word);
+  if(strcmp(root->data, word) < 0)
+    return searchWord(root->right, word);
+}
+
+//function for count elements i the tree
+int countElements(struct node* root){
+      int count = 1;             //Node itself should be counted
+      if (root ==NULL)
+          return 0;
+      else{
+          count += countElements(root->left);
+          count += countElements(root->right);
+          return count;
+      }
+  }
+
+
+// Returns maximum value in a given Binary Tree
+int findMaxFreq(struct node* root)
+  {
+      // Base case
+      if (root == NULL)
+        return;
+      int res = root->freq;
+      int lres = findMaxFreq(root->left);
+      int rres = findMaxFreq(root->right);
+      if (lres > res)
+        res = lres;
+      if (rres > res)
+        res = rres;
+      return res;
+  }
 
 //get each word of FILE
 char *getWord(FILE *fp){
@@ -208,6 +248,7 @@ char *getWord(FILE *fp){
 
 //function to test the functionality of code
 main(){
+  clock_t start_t, end_t, total_t;
   struct node* root = NULL;
   /* Open Folder */
   FILE *fp;
@@ -222,8 +263,50 @@ main(){
   //balance_tree(root);
   printf("Preorder\n");
   preorder(root);
-  printf("\n-----------\n");
-  //printf("Inorder\n");
-  //inorder(root);
-  printf("\n-----------\n");
+
+
+  start_t = clock();
+	/* Pregunta 1*/
+  printf("\n1.- ¿Se encuentra la palabra readiness? \n" );
+  if(searchWord(root, "readiness") == 1)
+    printf("Resp: Sí\n");
+  else
+    printf("Resp: No\n");
+  end_t = clock();
+  printf("\n Tiempo en responder: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
+
+  start_t = clock();
+	/* Pregunta 2*/
+  printf("\n2.- ¿Se encuentra la palabra fearless? \n" );
+  if(searchWord(root, "fearless") == 1)
+    printf("Resp: Sí\n");
+  else
+    printf("Resp: No\n");
+  end_t = clock();
+  printf("\n Tiempo en responder: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
+
+
+	/* Pregunta 3*/
+  start_t = clock();
+	printf("\n3.- ¿Cuantas palabras distintas hay en el archivo?" );
+  int count = 0;
+  count = countElements(root);
+	printf("\nResp: Hay %i palabras distintas en el archivo\n", count);
+  end_t = clock();
+  printf("\nTiempo en responder: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
+
+
+  /* Pregunta 4*/
+  start_t = clock();
+	printf("\n4.- ¿Cual es la palabra más utilizada?\n");
+  char maxFreqWord[MAXchar];
+  int maxFreq = 0;
+  maxFreq = findMaxFreq(root);
+  printf("Resp: Es la palabra ");
+  searchByFreq(root,maxFreq);
+  printf(" que se repite %i veces\n", maxFreq);
+  end_t = clock();
+  printf("\n Tiempo en responder: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
+
+
 }
