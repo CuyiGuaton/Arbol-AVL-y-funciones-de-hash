@@ -136,7 +136,7 @@ int mostUsedWord(char **words, int size,char *higher) {
 /* Driver program to test above functions */
 int main(){
   clock_t start_t, end_t, total_t;
-
+  clock_t start, end, total;
   /* Open Folder */
   FILE *fp;
   fp = fopen("archivo_4.tex", "r");
@@ -146,17 +146,21 @@ int main(){
   char **words;
   words = malloc(MAXWordInFile * sizeof(char*));
   int LenArray =0;
+  start_t = clock();
   while(word=getWord(fp)){ //it get each word of in the file
     words[LenArray] = malloc((MAXchar + 1) * sizeof(char));
     strcpy(words[LenArray], word);
     LenArray++;
   }
   fclose(fp);
+  start= clock();
   mergeSort(words, 0, LenArray - 1);
-
+  end = clock();
   printf("\nSorted array is \n");
   printArray(words, LenArray);
-
+  end_t = clock();
+  printf("\n Tiempo en ordenar el arreglo : %f segundos\n",  (double)(end - start) / CLOCKS_PER_SEC);
+  printf("\n Tiempo en generar el arreglo ordenado: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
 
   start_t = clock();
 	/* Pregunta 1*/

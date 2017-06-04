@@ -159,17 +159,7 @@ struct node* balance_tree(struct node* root){
   return root;
 }
 
-/*
-//utility function to find inorder successor
-//of a given node when it has a right child
-struct node* inorder_succ_right_tree(struct node* root){
-  struct node* temp = root->right;
-  while(temp->left){
-    temp = temp->left;
-  }
-  return temp;
-}
-*/
+
 //function for printing the pre-order of tree
 void preorder(struct node* root){
   if(!root)
@@ -184,7 +174,7 @@ void searchByFreq(struct node* root,int freq){
   if(!root)
     return;
   if(root->freq == freq)
-    printf("%s",root->data);
+    printf("\"%s\"",root->data);
   searchByFreq(root->left, freq);
   searchByFreq(root->right, freq);
 }
@@ -254,6 +244,7 @@ main(){
   FILE *fp;
   fp = fopen("archivo_4.tex", "r");
   /*Save words in the array words */
+  start_t = clock();
   char *word;
   while(word=getWord(fp)){ //it get each word of in the file
     root = insert(root, word);
@@ -263,7 +254,8 @@ main(){
   //balance_tree(root);
   printf("Preorder\n");
   preorder(root);
-
+  end_t = clock();
+  printf("\n Tiempo en general el árbol: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
 
   start_t = clock();
 	/* Pregunta 1*/

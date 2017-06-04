@@ -68,7 +68,7 @@ int main(int argc, char const *argv[]) {
   fclose(fp);
 
   //muestra las listas
-  /*
+  printf("Number hash list - words\n");
   for (  i = 0; i < MAX; i++) {
     if(heads[i]!=NULL){
       printf("%i - ",i );
@@ -76,7 +76,6 @@ int main(int argc, char const *argv[]) {
       printf("\n" );
     }
   }
-  */
 
   end_t = clock();
   printf("\n Tiempo en generar las listas: %f segundos\n",  (double)(end_t - start_t) / CLOCKS_PER_SEC);
