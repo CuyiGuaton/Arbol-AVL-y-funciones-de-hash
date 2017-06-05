@@ -34,8 +34,7 @@
 \usepackage{hyperref}
 
 \usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
+
 \fancyhead[L]{}
 \fancyhead[C]{Licenciatura en ciencia de la computación}
 \fancyhead[R]{USACH}
@@ -61,11 +60,6 @@ Recuperado el #6
 \textbf{#4}  \textsc{#5} Estado: Publicado
 }
 
-\bibliographystyle{ieeetr}  
-
-\usepackage{biblatex}
-\addbibresource{biblio.bib}
-
 
 \begin{document}
 
@@ -78,7 +72,7 @@ Recuperado el #6
 \includegraphics[scale=1]{UDSCNRJ}
 \\[1cm]
 
-{\Huge \textsc{Algoritmo de Strassen}}\\[0.7cm]
+{\Huge \textsc{Laboratorio 3}}\\[0.7cm]
 
 {\huge Complejidad}\\[2cm]
 
@@ -114,6 +108,12 @@ Recuperado el #6
 
  \newpage
 \section{Introducción} 
+
+A continuación se muestran las estrategias utilizadas, los costos de generar las estrategias y como se resolvio cada pregunta pedida con cada estrategia y su tiempo.
+
+A considerar que para encontrar cada palabra en el archivo se hizo una función que solo obteniera los caracteres del archivo y dice que es palabra cuando lo que le sigue no es caracter y todas las palabras siempre están en minuscula. Por eso es que palabra como The y the van a ser la misma y las palabras que lleven guion como that-that van a ser en realidad dos palabras distintas.
+
+\newpage
 
 \section{Estrategias utilizadas}
 
@@ -156,13 +156,13 @@ La tabla hash siempre va a guardar todas las palabras que tenga el archivo, pero
 
 Para propósitos de la medición de tiempo se decidió que el largo del arreglo de punteros sea de largo 800 debido a que más allá de 800 no hay crecimiento en los indices únicos que se pueden obtener por lo que es un desperdicio de memoria.
 
+\newpage
 \section{Soluciones a cada problema y tiempos}
 
 \subsection{Generar la estructura}
 
 Al momento de generar la estructura se considera también el tiempo en leer el archivo, esto es debido a que la función que leer el archivo devuelve cada palabra que hay en el archivo en minúsculas y sin signos y está se ingresa en la estructura de inmediato.
 
-El algoritmo que genero la estructura más rápido fue la tabla de hash.
 
 \subsubsection{Mergesort}
 
@@ -206,10 +206,11 @@ La búsqueda de una palabra en árbol es la más rápida ya que es de complejida
 
 \subsubsection{Tabla Hash}
 
-\paragraph{Tiempo si la palabra está:} 0.003609 segundos
+\paragraph{Tiempo si la palabra está:} 0.000002 segundos
 
-\paragraph{Tiempo si la no palabra está:}  0.003273 segundos
+\paragraph{Tiempo si la no palabra está:} 0.000003 segundos
 
+Para encontrar una palabra en la tabla en la tabla de hash se le aplica a la palabra la función hash y se obtiene el indice en donde se debe encontrar está, luego se compara cada palabra de la lista asociado a ese indice y se busca la palabra ahí. Por lo que el coste es lineal ya que el problema de reduce a buscar una palabra en una lista.
 
 \subsection{Contar la cantidad de palabras distintas}
 
@@ -256,6 +257,40 @@ Para encontrar la palabra máxima utilizada se usan dos algoritmos, ambos aprove
 
 Para encontrar el mayor elemento entre las listas de la tabla de hash se aprovecho de que las mayoría de las palabras que están repetidas están siempre juntas y la mayor siempre está en mayor cantidad así que se uso al algoritmo "Boyer–Moore majority vote algorithm" que logra encontrar el mayor elemento de una lista de manera lineal siempre y cuando este se repita una gran cantidad de veces. Se aplico el algoritmo a cada sublista de la tabla y cada vez que encuentra el mayor elemento se usa otro algoritmo que cuenta la cantidad de veces que se repite ese algoritmo, el mayor elemento es guardado en un auxiliar cuando a su frecuencia y cuando se encuentra otro mayor elemento se reemplaza, así hasta que se haya encontrado el mayor elemento de la tablad de hash.
 
+\newpage
+\section{Información de Hardware y Software}
+
+Se muestra información sobre la maquina usada para las pruebas mostradas en el informe.
+
+\subsection{Software}
+\begin{itemize}
+\item SO: Xubuntu 16.04.1 LTS
+\item GMP Library
+\item Mousepad 0.4.0
+\end{itemize}
+
+\subsection{Hardware}
+\begin{itemize}
+\item AMD Turion(tm) X2 Dual-Core Mobile RM-72 2.10GHz
+\item Memoria (RAM): 4,00 GB(3,75 GB utilizable)
+\item Adaptador de pantalla: ATI Raedon HD 3200 Graphics
+\end{itemize}
+
+\newpage
+
 \section{Conclusión}
+
+
+Se concluye que en lo que es generar la estructura la tabla hash es más eficiente ya que no requiere costos extras como lo son las operaciones de balance que usa el árbol o usar un algoritmo de ordamiento como lo hace el arreglo. Pero en lo que se refiere a memoria gana el árbol ya que permite guardar los elementos repetidos en el mismo nodo usando un contador sin usar tiempo extra.
+
+En lo que se refiere a buscar dentro de la estructura gana tabla de hash, pero solo si no hay colisiones en el indice en que está palabra, si hay muchas colisiones entonces gana el árbol AVL ya que puede que haga menos comparaciones que lo que hace la tabla de hash. Con muchas colisiones de distintas palabras tabla hash y un arreglo ordenado tienen a ser parecidos, aunque siempre va a hash ya que mientras el arreglo tiene todas las palabras, una lista de tabla de hash va a tener las correspondan a esa colisión.
+
+Para contar la cantidad de palabras distintas gana el árbol AVL ya que el problema se reduce a contar la cantidad de elementos del nodo, el cambio arreglo y tabla hash implica hacer una comparación completa de todos los elementos que tengan, hash ocupa más memoria que los dos ya que para cada sublista crea una lista auxiliar que tenga la cantidad de palabras únicas y gasta más tiempo en contar la cantidad de elementos de esa lista. Arreglo ordenado no usa memoria extra ya solo va comparando cada palabra con la que sigue.
+
+Para contar la palabra más utilizada gana árbol AVL ya que al que tener la frecuencia en que aparece cada palabra solo busca la mayor frecuencia y luego recorre el árbol buscando la palabra que tenga esa frecuencia, todo sin usar memoria extra, el arreglo ordenado usa compara cada elemento con el que le sigue por lo que tampoco  usa memoria extra y ex más rápido, con tabla hash es má complicado ya que se debe buscar la mayor palabra en cada sublista y luego contar la cantidad de veces que aparece en esa sublista, por lo que usa mayor cantidad de tiempo que todas las demás, aunque no hay uso de memoria extra para esto.
+
+En si, árbol AVl es más eficiente para operaciones que involucren usar todos los elementos que tengan, tabla hash es más eficiente cuando se hacer busqueda de un solo elemento y un arreglo ordenado termina siendo más eficiente en general para lo que es la implementanción.
+
+
 
 \end{document}
