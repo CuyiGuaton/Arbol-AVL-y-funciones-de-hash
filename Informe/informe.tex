@@ -112,7 +112,7 @@ Recuperado el #6
 
 \tableofcontents
 
- 
+ \newpage
 \section{Introducción} 
 
 \section{Estrategias utilizadas}
@@ -224,13 +224,15 @@ Para contar la cantidad de palabras distintas se compara cada palabra del arregl
 
 \paragraph{Tiempo:} 0.000369 segundos
 
-
+Contar la cantidad de palabras distintas en el árbol es más rápido debido a que el árbol solo contiene las palabras que son distintas, por lo que solo se deben contar la cantidad de elementos en el árbol. La complejidad es lineal ya que debe contar y comparar los n elementos del árbol.
 
 \subsubsection{Tabla Hash}
 
 \paragraph{Tiempo:} 0.005666 segundos
 
+Contar la cantidad distintas de elementos de una tabla hash es más complicado que en los algoritmos anteriores, esto es debido a que las coaliciones en la tabla de hash hace que tenga una cantidad grande de listas desordenadas. Por lo que el problema se trata de encontrar los elementos de una lista desordenadas k veces, donde k es el número de indices con colisiones en la tabla.
 
+Para contar los elementos distintos en una lista desordenada es un principio se hizo por fuerza bruta que es comparando cada elemento con todos los siguen delante de él, pero luego de opto por hacer un intercambio tiempo memoria creando una una lista temporal en donde se guardan los elementos únicos, comparando cada elemento de la lista desornamentada con los de la lista temporal y luego calculando el largo de la lista de elementos únicos. Se decidió hacer esto debido a que la listas por lo general tienen una gran cantidad de elementos repetidos por lo que la lista temporal no va a tener más de uno o dos elementos haciendo que en muchos casos la complejidad sea lineal ya que solo se termina comparando un elemento único en la lista temporal con el resto de elementos que están repetidos en la lista.
 
 \subsection{Encontrar la palabra más utilizada}
 
@@ -238,16 +240,22 @@ Para contar la cantidad de palabras distintas se compara cada palabra del arregl
 
 \paragraph{Tiempo:} 0.001357 segundos
 
+Para encontrar la palabra más utilizada solo ser recorre el arreglo ordenado contando la frecuencia de cada palabra, se compara cada palabra con la siguiente y si son distintas se compara la frecuencia máxima alcanza hasta el momento con la frecuencia de repeticiones que obtuvo esa palabra, si la palabra tiene más frecuencia entonces esa se convierte en la nueva frecuencia máxima y se se guarda esa palabra en un auxiliar. Luego se devuelve la frecuencia máxima y la palabra que se envió por referencia.
+
+La complejidad es lineal debido a que solo se compara cada palabra con la que le sigue hasta el final del arreglo.
 
 \subsubsection{Árbol AVL}
 
 \paragraph{Tiempo:} 0.000331 segundos
 
+Para encontrar la palabra máxima utilizada se usan dos algoritmos, ambos aprovechan la estructura de los nodos que además guardar de la palabra almacenan la cantidad de veces que se repite esta, el primero busca la palabra con la  mayor frecuencia en árbol de manera recursiva comparando los elementos que desde la hoja hasta la raíz y devolviendo siempre el mayor. El segundo algoritmo recorre todo el árbol buscando el nodo que tenga la frecuencia máxima ya encontrada anteriormente y la muestra. La complejidad es lineal ya que se recorre dos veces todo el árbol de n elementos, debido a que árbol está ordenado por el valor de las palabras y no su frecuencia.
+
 \subsubsection{Tabla Hash}
 
 \paragraph{Tiempo:} 0.004188 segundos
 
+Para encontrar el mayor elemento entre las listas de la tabla de hash se aprovecho de que las mayoría de las palabras que están repetidas están siempre juntas y la mayor siempre está en mayor cantidad así que se uso al algoritmo "Boyer–Moore majority vote algorithm" que logra encontrar el mayor elemento de una lista de manera lineal siempre y cuando este se repita una gran cantidad de veces. Se aplico el algoritmo a cada sublista de la tabla y cada vez que encuentra el mayor elemento se usa otro algoritmo que cuenta la cantidad de veces que se repite ese algoritmo, el mayor elemento es guardado en un auxiliar cuando a su frecuencia y cuando se encuentra otro mayor elemento se reemplaza, así hasta que se haya encontrado el mayor elemento de la tablad de hash.
 
-
+\section{Conclusión}
 
 \end{document}

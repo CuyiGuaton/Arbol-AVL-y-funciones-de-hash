@@ -6,7 +6,7 @@
 
 /*inicio definiciones y funciones que se usaran en la lista*/
 
-#define MAX 1000 // len of the array of pinters
+#define MAX 800 // len of the array of pinters
 #define MAXchar 30
 
 typedef struct node{
